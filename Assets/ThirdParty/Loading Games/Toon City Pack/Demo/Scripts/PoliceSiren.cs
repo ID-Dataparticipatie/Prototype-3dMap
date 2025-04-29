@@ -13,8 +13,8 @@ public class PoliceSiren : MonoBehaviour {
 
     private void Start() {
         mr = GetComponent<MeshRenderer>();
-        defShader = Shader.Find("Standard");
-        unlitShader = Shader.Find("Unlit/Color");
+        defShader = Shader.Find("Universal Render Pipeline/Lit");
+        unlitShader = Shader.Find("Universal Render Pipeline/Unlit");
     }
 
     private void Update() {
