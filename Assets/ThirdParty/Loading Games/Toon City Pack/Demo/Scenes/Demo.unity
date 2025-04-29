@@ -53387,6 +53387,10 @@ PrefabInstance:
       propertyPath: isSirenOn
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1610895502443687768, guid: 3251c781defe1407c8f424ea546826e9, type: 3}
+      propertyPath: colorInterval
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7437263717829056142, guid: 3251c781defe1407c8f424ea546826e9, type: 3}
       propertyPath: m_Name
       value: police-car_2
@@ -82615,7 +82619,7 @@ Light:
   serializedVersion: 11
   m_Type: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 5.44
+  m_Intensity: 844
   m_Range: 37.17
   m_SpotAngle: 26.8
   m_InnerSpotAngle: 5.593055
