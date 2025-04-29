@@ -124,5 +124,6 @@ AssetOrigin:
   productId: 234785
   packageName: Toon City Pack
   packageVersion: 1.0
-  assetPath: Assets/Loading Games/Toon City Pack/Models/Buildings/Commercial Buildings/commercial-building-ice-cream-shop.fbx
+  assetPath: Assets/ThirdParty/Loading Games/Toon City Pack/Models/Buildings/Commercial
+    Buildings/commercial-building-ice-cream-shop.fbx
   uploadId: 536772

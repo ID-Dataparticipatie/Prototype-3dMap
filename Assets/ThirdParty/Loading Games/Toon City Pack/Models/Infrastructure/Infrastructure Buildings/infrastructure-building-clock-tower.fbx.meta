@@ -124,6 +124,6 @@ AssetOrigin:
   productId: 234785
   packageName: Toon City Pack
   packageVersion: 1.0
-  assetPath: Assets/Loading Games/Toon City Pack/Models/Infrastructure/Infrastructure
+  assetPath: Assets/ThirdParty/Loading Games/Toon City Pack/Models/Infrastructure/Infrastructure
     Buildings/infrastructure-building-clock-tower.fbx
   uploadId: 536772
