@@ -6,13 +6,13 @@ public enum LightColor { Red, Yellow, Green, None }
 public class TrafficLights : MonoBehaviour {
 
     public LightColor activeLight;
-    private MeshRenderer mr;
-    private Shader defShader, unlitShader;
+    private MeshRenderer _mr;
+    private Shader _defShader, _unlitShader;
 
     private void Start() {
-        mr = GetComponent<MeshRenderer>();
-        defShader = Shader.Find("Universal Render Pipeline/Lit");
-        unlitShader = Shader.Find("Universal Render Pipeline/Unlit");
+        _mr = GetComponent<MeshRenderer>();
+        _defShader = Shader.Find("Universal Render Pipeline/Lit");
+        _unlitShader = Shader.Find("Universal Render Pipeline/Unlit");
         SetLight(activeLight);
     }
 
@@ -34,7 +34,7 @@ public class TrafficLights : MonoBehaviour {
         }
 
         for(int i = 1; i < 4; i++) {
-            mr.materials[i].shader = activeIndex == i ? unlitShader : defShader;
+            _mr.materials[i].shader = activeIndex == i ? _unlitShader : _defShader;
         }
     }
 

@@ -4,35 +4,46 @@ using UnityEngine;
 
 public class PoliceSiren : MonoBehaviour {
 
-    public GameObject blueLight, redLight;
-    public bool isSirenOn;
-    public float colorInterval;
-    private float timer;
-    private MeshRenderer mr;
-    private Shader defShader, unlitShader;
+	public GameObject blueLight, redLight;
+	public bool isSirenOn;
+	public float colorInterval;
+	private float _timer;
+	private MeshRenderer _mr;
+	private Shader _defShader, _unlitShader;
 
-    private void Start() {
-        mr = GetComponent<MeshRenderer>();
-        defShader = Shader.Find("Universal Render Pipeline/Lit");
-        unlitShader = Shader.Find("Universal Render Pipeline/Unlit");
-    }
+	private float _randomTimeOffset;
+	private bool _initialDelayComplete = false;
 
-    private void Update() {
-        if (isSirenOn) {
-            if(timer > colorInterval) {
-                // index 3 : blue, index 4 : red
-                bool isBlueUnlit = mr.materials[3].shader == unlitShader;
+	private void Start() {
+		_mr = GetComponent<MeshRenderer>();
+		_defShader = Shader.Find("Universal Render Pipeline/Lit");
+		_unlitShader = Shader.Find("Universal Render Pipeline/Unlit");
+		_randomTimeOffset = Random.Range(0, colorInterval * 2);
+	}
 
-                blueLight.SetActive(!isBlueUnlit);
-                redLight.SetActive(isBlueUnlit);
+	private void Update() {
+		if (!_initialDelayComplete) {
+			_timer += Time.deltaTime;
+			if (_timer >= _randomTimeOffset) {
+				_initialDelayComplete = true;
+			}
+			return;
+		}
 
-                mr.materials[3].shader = isBlueUnlit ? defShader : unlitShader;
-                mr.materials[4].shader = isBlueUnlit ? unlitShader : defShader;
+		if (isSirenOn) {
+			if (_timer > colorInterval) {
+				// index 3 : blue, index 4 : red
+				bool isBlueUnlit = _mr.materials[3].shader == _unlitShader;
 
-                timer = 0;
-            }
+				blueLight.SetActive(!isBlueUnlit);
+				redLight.SetActive(isBlueUnlit);
 
-            timer += Time.deltaTime;
-        }
-    }
+				_mr.materials[3].shader = isBlueUnlit ? _defShader : _unlitShader;
+				_mr.materials[4].shader = isBlueUnlit ? _unlitShader : _defShader;
+
+				_timer = 0;
+			}
+		}
+		_timer += Time.deltaTime;
+	}
 }
