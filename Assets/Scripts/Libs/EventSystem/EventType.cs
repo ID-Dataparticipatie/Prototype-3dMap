@@ -1,33 +1,11 @@
-/// <summary>
-///
-/// </summary>
+
 public enum EventType {
-	// Player input events
-	MOVEMENT,
-	DASH,
-	INTERACT,
-	USE_PRIMARY,
-	USE_SECONDARY,
-	HOTBAR_SELECT,
-	HOTBAR_SWITCH,
+	// Player movement
+	PLAYER_MOVE,
+	PLAYER_LOOK,
+
+	// Menu actions
 	PAUSE,
-
-	// State Events
-	DEATH,
-	HIT,
-	INV_ADD,
-	INV_REMOVE,
-	INTERACT_TOGGLE,
-
-	// Audio Events
-	AUDIO_PLAY,
-	AUDIO_STOP,
-	AUDIO_STOP_ALL,
-
-	// Map events
-	PLAYER_ENTER_BUILDING_COVER,
-	PLAYER_EXIT_BUILDING_COVER,
-	ENTER_CHURCH,
-	ENTER_VILLAGE,
+	TOGGLE_BUILD_MENU
 
 }
