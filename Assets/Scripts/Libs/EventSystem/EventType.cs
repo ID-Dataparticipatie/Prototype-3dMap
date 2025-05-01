@@ -1,11 +1,12 @@
 
 public enum EventType {
-	// Player movement
+	// Player
 	PLAYER_MOVE,
 	PLAYER_LOOK,
+	PLAYCER_PLACE,
 
-	// Menu actions
-	PAUSE,
-	TOGGLE_BUILD_MENU
+	// Menu toggles
+	MENU_PAUSE,
+	MENU_BUILD
 
 }

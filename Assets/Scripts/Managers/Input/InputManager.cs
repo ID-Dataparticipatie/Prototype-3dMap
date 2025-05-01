@@ -40,10 +40,21 @@ public class InputManager : MonoBehaviour {
 			EventBus.Instance.TriggerEvent(EventType.PLAYER_LOOK, value.Get<Vector2>());
 	}
 
+	public void OnPlace(InputValue value) {
+		if (CheckTimeScale())
+			EventBus.Instance.TriggerEvent(EventType.PLAYCER_PLACE, value.isPressed);
+	}
+
 	public void OnToggleBuildMenu(InputValue value) {
 		if (CheckTimeScale())
-			EventBus.Instance.TriggerEvent(EventType.TOGGLE_BUILD_MENU, value.isPressed);
+			EventBus.Instance.TriggerEvent(EventType.MENU_BUILD, value.isPressed);
 	}
+
+
+
+
+
+
 
 	private bool CheckTimeScale() {
 		return Time.timeScale != 0;
