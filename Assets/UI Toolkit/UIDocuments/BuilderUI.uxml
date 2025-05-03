@@ -1,0 +1,9 @@
+<engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI%20Toolkit/UIDocuments/USS/BuilderUI.uss?fileID=7433441132597879392&amp;guid=5321d3b34ac300044b9b40d408c25cea&amp;type=3#BuilderUI" />
+    <engine:VisualElement name="background" style="flex-grow: 1; background-color: rgba(255, 255, 255, 0.2);">
+        <engine:VisualElement name="main-container" style="flex-direction: column; height: 100%; width: 100%;">
+            <engine:ListView name="build-item-selector" virtualization-method="DynamicHeight" style="width: 20%; background-color: rgba(255, 0, 0, 0.25); height: 75%; align-self: flex-end;" />
+            <engine:VisualElement name="build-item-preview" style="flex-grow: 1; align-self: flex-end; width: 20%; height: 25%; background-color: rgba(0, 0, 255, 0.25);" />
+        </engine:VisualElement>
+    </engine:VisualElement>
+</engine:UXML>

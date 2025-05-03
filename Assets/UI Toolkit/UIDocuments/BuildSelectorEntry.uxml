@@ -1,0 +1,7 @@
+<engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <engine:VisualElement name="build-list-entry" style="height: auto; background-color: rgba(255, 233, 233, 0.18); border-top-left-radius: 8px; border-top-right-radius: 8px; border-bottom-right-radius: 8px; border-bottom-left-radius: 8px; background-size: 100% 100%; width: auto; flex-grow: 0; margin-top: 0; margin-right: 0; margin-bottom: 5px; margin-left: 0;">
+        <engine:VisualElement name="item-name" style="flex-grow: 1; height: 25%; justify-content: center; align-items: center; font-size: 14%;">
+            <engine:Label text="StreetSign - StreeetL/24" name="item-name-text" double-click-selects-word="false" triple-click-selects-line="false" selectable="false" style="font-size: 9px; white-space: nowrap; -unity-font-style: bold;" />
+        </engine:VisualElement>
+    </engine:VisualElement>
+</engine:UXML>
