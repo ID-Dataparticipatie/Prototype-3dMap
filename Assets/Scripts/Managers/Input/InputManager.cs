@@ -3,10 +3,11 @@ using UnityEngine.InputSystem;
 
 public class InputManager : MonoBehaviour {
 	private static string _logname = "InputManager";
-	public static InputManager Instance;
-
 	private string _currentProfile = "Default";
 
+	private PlayerInput _playerInputActions;
+
+	public static InputManager Instance;
 
 	private void Awake() {
 		if (Instance == null) {
@@ -18,6 +19,13 @@ public class InputManager : MonoBehaviour {
 			return;
 		}
 		DontDestroyOnLoad(Instance);
+	}
+
+	void Start() {
+		_playerInputActions = GetComponent<PlayerInput>();
+		SetControlMap(_playerInputActions.defaultActionMap);
+		
+		EventBus.Instance.Subscribe<bool>(EventType.MENU_BUILD, state => SetControlMap(state ? "UI" : "Player"));
 	}
 
 	public void OnControlsChanged(PlayerInput value) {
@@ -48,11 +56,15 @@ public class InputManager : MonoBehaviour {
 	public void OnToggleBuildMenu(InputValue value) {
 		if (CheckTimeScale())
 			EventBus.Instance.TriggerEvent(EventType.MENU_BUILD, value.isPressed);
-			EventBus.Instance.TriggerEvent(EventType.MENU_BUILD);
+		EventBus.Instance.TriggerEvent(EventType.MENU_BUILD);
 	}
 
 
-
+	public void SetControlMap(string controlMap) {
+		_playerInputActions = GetComponent<PlayerInput>();
+		_playerInputActions.SwitchCurrentActionMap(controlMap);
+		Logger.Log(_logname, "Current actionmap: " + _playerInputActions.currentActionMap.name);
+	}
 
 
 

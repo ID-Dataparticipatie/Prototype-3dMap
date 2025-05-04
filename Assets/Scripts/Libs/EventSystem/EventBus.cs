@@ -127,10 +127,9 @@ public class EventBus : MonoBehaviour {
 		if (Instance._eventHash.ContainsKey(key)) {
 			newEvent = (UnityEvent<T>)Instance._eventHash[key];
 			newEvent.Invoke(val);
-
-			if (_showTriggerLogs) {
-				sendToLogger($"Event {eventName} was triggerd with value {typeof(T).Name}({val})");
-			}
+		}
+		if (_showTriggerLogs) {
+			sendToLogger($"Event {eventName} was triggered with value {typeof(T).Name}({val})");
 		}
 	}
 
@@ -140,10 +139,9 @@ public class EventBus : MonoBehaviour {
 		if (Instance._eventHash.ContainsKey(eventName)) {
 			newEvent = (UnityEvent)Instance._eventHash[eventName];
 			newEvent.Invoke();
-
-			if (_showTriggerLogs) {
-				sendToLogger($"Event {eventName} was triggerd");
-			}
+		}
+		if (_showTriggerLogs) {
+			sendToLogger($"Event {eventName} was triggered");
 		}
 	}
 
