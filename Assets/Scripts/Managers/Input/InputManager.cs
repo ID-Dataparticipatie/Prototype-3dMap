@@ -48,6 +48,7 @@ public class InputManager : MonoBehaviour {
 	public void OnToggleBuildMenu(InputValue value) {
 		if (CheckTimeScale())
 			EventBus.Instance.TriggerEvent(EventType.MENU_BUILD, value.isPressed);
+			EventBus.Instance.TriggerEvent(EventType.MENU_BUILD);
 	}
 
 
