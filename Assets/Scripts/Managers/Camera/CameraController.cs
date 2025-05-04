@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class MoveCamera : MonoBehaviour {
+public class CameraController : MonoBehaviour {
 	[SerializeField]
 	private ConstraintBox _constraintBox;
 

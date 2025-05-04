@@ -63,7 +63,7 @@ public class PreviewSystem : MonoBehaviour {
 		}
 
 		if (prefab == null) {
-			Logger.LogError("PreviewSystem", "Prefab is null. Cannot set preview object.");
+			Logger.LogWarning("PreviewSystem", "Prefab is null. Cannot set preview object.");
 			return;
 		}
 

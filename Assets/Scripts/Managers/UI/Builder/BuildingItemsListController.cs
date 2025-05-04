@@ -55,5 +55,6 @@ public class BuildingItemsListController {
 		}
 		PreviewSystem.Instance.SetPreviewObject(selectedObject.Prefab);
 		_buildingItemPreview.style.backgroundImage = new StyleBackground(Background.FromRenderTexture(PreviewSystem.Instance.GetCurrentRenderTexture()));
+		EventBus.Instance.TriggerEvent(EventType.CHANGE_STRUCTURE, selectedObject.Prefab);
 	}
 }

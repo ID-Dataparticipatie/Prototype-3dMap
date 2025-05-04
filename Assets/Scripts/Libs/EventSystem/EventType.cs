@@ -3,7 +3,12 @@ public enum EventType {
 	// Player
 	PLAYER_MOVE,
 	PLAYER_LOOK,
-	PLAYCER_PLACE,
+
+	// Build mode
+	MOVE_STRUCTURE,
+	ROTATE_STRUCTURE,
+	CHANGE_STRUCTURE,
+	PLACE_STRUCTURE,
 
 	// Menu toggles
 	MENU_PAUSE,
