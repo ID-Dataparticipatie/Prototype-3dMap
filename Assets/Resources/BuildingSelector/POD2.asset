@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfffc7dc3537c364a91682a528dc7591, type: 3}
   m_Name: POD2
   m_EditorClassIdentifier: 
-  ObjectName: cb-apartment-A
+  ObjectName: cb-apartment-B
   Prefab: {fileID: 6719888361061052548, guid: f154d8e56ba3c48c18e04e119cc1c9cd, type: 3}

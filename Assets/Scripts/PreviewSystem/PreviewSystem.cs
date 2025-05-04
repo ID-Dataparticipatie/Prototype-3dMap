@@ -12,9 +12,39 @@ public class PreviewSystem : MonoBehaviour {
 
 	private GameObject _currentPreviewObject;
 
+	public static PreviewSystem Instance { get; private set; }
+
+	void Awake() {
+		if (Instance == null) {
+			Instance = this;
+		}
+		else {
+			Logger.LogWarning("PreviewSystem", "Multiple instances of PreviewSystem detected. Destroying duplicate.");
+			Destroy(gameObject);
+		}
+	}
+
+	public RenderTexture GetCurrentRenderTexture() {
+		if (_previewCamera != null) {
+			return _previewCamera.targetTexture;
+		}
+		else {
+			Logger.LogError("PreviewSystem", "Preview camera is not set.");
+			return null;
+		}
+	}
+
 	public void SetPreviewObject(GameObject prefab) {
 		// Instantiate the preview object at the camera's position and rotation
-		DestroyImmediate(_currentPreviewObject);
+		if (_currentPreviewObject != null ) {
+			DestroyImmediate(_currentPreviewObject);
+		}
+
+		if (prefab == null) {
+			Logger.LogError("PreviewSystem", "Prefab is null. Cannot set preview object.");
+			return;
+		}
+
 		_currentPreviewObject = Instantiate(prefab, _previewRenderPoint.position, _previewRenderPoint.rotation);
 
 		// Set the preview object as a child of the camera
