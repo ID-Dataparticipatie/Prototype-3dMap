@@ -175,6 +175,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: wooden-fence_14 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 6640174995143383478, guid: 55994d471996942828c8e8550037daef, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -791,6 +795,116 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7080362813563202653, guid: 96d468962340d443989d3580d218cb93, type: 3}
   m_PrefabInstance: {fileID: 486022551}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &593859222
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 593859226}
+  - component: {fileID: 593859225}
+  - component: {fileID: 593859224}
+  - component: {fileID: 593859223}
+  m_Layer: 8
+  m_Name: Pipe
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!136 &593859223
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 593859222}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 2
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
+--- !u!23 &593859224
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 593859222}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &593859225
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 593859222}
+  m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &593859226
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 593859222}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
+  m_LocalPosition: {x: 11.447, y: -0.41, z: 0}
+  m_LocalScale: {x: 0.28524792, y: 5.351694, z: 0.28524792}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
 --- !u!1001 &648474971
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1349,6 +1463,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: wooden-fence_15 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 6640174995143383478, guid: 55994d471996942828c8e8550037daef, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1468,6 +1586,10 @@ PrefabInstance:
     - target: {fileID: 6640174995143383478, guid: 55994d471996942828c8e8550037daef, type: 3}
       propertyPath: m_Name
       value: wooden-fence_17 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6640174995143383478, guid: 55994d471996942828c8e8550037daef, type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1690,6 +1812,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: wooden-fence_16 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 6640174995143383478, guid: 55994d471996942828c8e8550037daef, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1874,6 +2000,10 @@ PrefabInstance:
     - target: {fileID: 6640174995143383478, guid: 55994d471996942828c8e8550037daef, type: 3}
       propertyPath: m_Name
       value: wooden-fence_13 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6640174995143383478, guid: 55994d471996942828c8e8550037daef, type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2270,6 +2400,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: wooden-fence_12 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 6640174995143383478, guid: 55994d471996942828c8e8550037daef, type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2414,6 +2548,10 @@ PrefabInstance:
     - target: {fileID: 5900967072580627644, guid: 8d6ced06318c04ceb8cb56dff03a9375, type: 3}
       propertyPath: m_Name
       value: two-lane-linear-road-piece_21 (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5900967072580627644, guid: 8d6ced06318c04ceb8cb56dff03a9375, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6534620689486427654, guid: 8d6ced06318c04ceb8cb56dff03a9375, type: 3}
       propertyPath: m_RootOrder
@@ -2995,3 +3133,4 @@ SceneRoots:
   - {fileID: 90077521}
   - {fileID: 760251588}
   - {fileID: 678634173}
+  - {fileID: 593859226}
