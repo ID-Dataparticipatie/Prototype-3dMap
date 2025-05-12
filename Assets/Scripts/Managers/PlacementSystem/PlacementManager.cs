@@ -15,7 +15,7 @@ public class PlacementManager : MonoBehaviour {
 	private LayerMask _buildableLayers;
 
 	[SerializeField]
-	private float _rotationFactor = 1.0f;
+	private float _rotationFactor = 2.5f;
 
 	[SerializeField]
 	private Material _validPlacementMaterial;
@@ -54,7 +54,7 @@ public class PlacementManager : MonoBehaviour {
 		EventBus.Instance.Subscribe(EventType.PLACE_STRUCTURE, OnPlaceStructure);
 	}
 
-	void Update() {
+	void FixedUpdate() {
 		if (_currentPlacedPrefab != null && _rotationInput != 0) {
 			_currentPlacedPrefab.transform.Rotate(Vector3.up, _rotationInput * _rotationFactor);
 		}
@@ -89,9 +89,9 @@ public class PlacementManager : MonoBehaviour {
 
 	private void SwitchPlacementHightlight() {
 		if (_currentPlacedPrefab != null && _placementPosition.transform != null) {
-			// Bitwise, if layermask contains object layer
 			List<Material> currentmaterials = _currentPlacedPrefab.GetComponent<Renderer>().materials.ToList();
 
+			// Bitwise, if layermask contains object layer
 			if ((_buildableLayers & (1 << _placementPosition.transform.gameObject.layer)) != 0) {
 				for (int i = 0; i < currentmaterials.Count; i++) {
 					currentmaterials[i] = _validPlacementMaterial;
@@ -139,11 +139,10 @@ public class PlacementManager : MonoBehaviour {
 
 	private void OnPlaceStructure() {
 		if (_canPlace) {
-			// Place the object
 			GameObject newPlacement = Instantiate(_buildablePrefab, _currentPlacedPrefab.transform.position, _currentPlacedPrefab.transform.rotation);
 			newPlacement.transform.parent = _placementPosition.transform;
-			EventBus.Instance.TriggerEvent<GameObject>(EventType.CHANGE_STRUCTURE, _buildablePrefab);
 
+			EventBus.Instance.TriggerEvent<GameObject>(EventType.CHANGE_STRUCTURE, _buildablePrefab);
 		}
 	}
 }

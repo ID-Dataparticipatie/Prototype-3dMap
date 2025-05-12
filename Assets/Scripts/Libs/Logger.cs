@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public static class Logger {
@@ -7,6 +8,10 @@ public static class Logger {
 		#else
 			Debug.Log($"[{name}]: {message}");
 		#endif
+		#if DEVELOPMENT_BUILD
+			Console.WriteLine($"[{name}]: {message}");
+			System.Diagnostics.Debugger.Log(0, name, message.ToString());
+		#endif
     }
 
     public static void LogWarning(string name, object message) {
@@ -15,6 +20,10 @@ public static class Logger {
 		#else
 			Debug.Log($"[{name}]: {message}");
 		#endif
+		#if DEVELOPMENT_BUILD
+			Console.WriteLine($"[{name}]: {message}");
+			System.Diagnostics.Debugger.Log(0, name, message.ToString());
+		#endif
     }
 
     public static void LogError(string name, object message) {
@@ -22,6 +31,11 @@ public static class Logger {
 			Debug.LogError($"<color=silver>[  <color=red>{name}</color>  ]: " + message + "</color>");
 		#else
 			Debug.LogError($"[{name}]: {message}");
+		#endif
+
+		#if DEVELOPMENT_BUILD
+			Console.WriteLine($"[{name}]: {message}");
+			System.Diagnostics.Debugger.Log(0, name, message.ToString());
 		#endif
     }
 }
