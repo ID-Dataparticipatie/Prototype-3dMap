@@ -89,26 +89,29 @@ public class PlacementManager : MonoBehaviour {
 
 	private void SwitchPlacementHightlight() {
 		if (_currentPlacedPrefab != null && _placementPosition.transform != null) {
-			List<Material> currentmaterials = _currentPlacedPrefab.GetComponent<Renderer>().materials.ToList();
+			List<Renderer> renderers = _currentPlacedPrefab.GetComponentsInChildren<Renderer>().ToList();
 
 			// Bitwise, if layermask contains object layer
 			if ((_buildableLayers & (1 << _placementPosition.transform.gameObject.layer)) != 0) {
-				for (int i = 0; i < currentmaterials.Count; i++) {
-					currentmaterials[i] = _validPlacementMaterial;
-				}
-				_currentPlacedPrefab.GetComponent<Renderer>().SetMaterials(currentmaterials);
+				SetMaterialsInRenderers(renderers, _validPlacementMaterial);
 				_canPlace = true;
 			}
 			else {
-				for (int i = 0; i < currentmaterials.Count; i++) {
-					currentmaterials[i] = _invalidPlacementMaterial;
-				}
-				_currentPlacedPrefab.GetComponent<Renderer>().SetMaterials(currentmaterials);
+				SetMaterialsInRenderers(renderers, _invalidPlacementMaterial);
 				_canPlace = false;
 			}
 		}
 	}
 
+	private void SetMaterialsInRenderers(List<Renderer> renderers, Material material) {
+		foreach (Renderer renderer in renderers) {
+			Material[] materials = renderer.materials;
+			for (int i = 0; i < materials.Length; i++) {
+				materials[i] = material;
+			}
+			renderer.materials = materials;
+		}
+	}
 
 	private void OnMoveStructure(Vector2 position, bool useCenter) {
 

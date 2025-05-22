@@ -3004,7 +3004,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 825764369118356696, guid: b87c066456df4c54b8231485334cbf2c, type: 3}
       propertyPath: _showLogging
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 825764369118356696, guid: b87c066456df4c54b8231485334cbf2c, type: 3}
       propertyPath: _showSubscriptionLogs
