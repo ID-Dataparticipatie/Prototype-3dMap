@@ -1,31 +1,61 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class DebugGUI : MonoBehaviour {
 
-	private float _count;
+	private bool _showDebugWindow = false;
+	private Rect _debugWindowRect = new(100, 100, 500, 300);
+
+	private float _fpsCount;
+	private string _logFilter = string.Empty;
 
 	private IEnumerator Start() {
 		GUI.depth = 2;
 		while (true) {
-			_count = 1f / Time.unscaledDeltaTime;
+			_fpsCount = 1f / Time.unscaledDeltaTime;
 			yield return new WaitForSeconds(0.1f);
 		}
 	}
 
 	private void OnGUI() {
-		GUI.Label(new Rect(5, 40, 100, 25), "FPS: " + Mathf.Round(_count));
-		GUI.Label(new Rect(5, 80, 500, 25), "Debugger attatched: " + System.Diagnostics.Debugger.IsAttached);
+		GUILayout.Label("FPS: " + Mathf.Round(_fpsCount));
+		GUILayout.Label("Debugger attatched: " + System.Diagnostics.Debugger.IsAttached);
+
+		if (GUILayout.Button("Open Debug Tools")) {
+			_showDebugWindow = !_showDebugWindow;
+		}
+
+		// Show debug window if toggled
+		if (_showDebugWindow) {
+			_debugWindowRect = GUILayout.Window(0, _debugWindowRect, DebugWindowFunction, "Debug Tools");
+		}
+	}
+
+	void DebugWindowFunction(int windowID) {
 
 		// Display Logging
-		GUI.Label(new Rect(5, 100, 500, 25), "Log List:");
-		GUI.BeginScrollView(new Rect(5, 120, 500, 300), Vector2.zero, new Rect(0, 0, 500, Logger.LogList.Count * 25));
-		for (int i = 0; i < Logger.LogList.Count; i++) {
-			GUI.Label(new Rect(0, i * 25, 500, 25), Logger.LogList[i]);
+		GUILayout.Label("Log List:");
+
+		GUILayout.BeginScrollView(Vector2.zero);
+
+		foreach (string log in Logger.LogList) {
+			if (_logFilter != string.Empty) {
+				if (!log.ToLower().Contains(_logFilter.ToLower())) {
+					continue;
+				}
+			}
+			GUILayout.Label(log);
 		}
-		GUI.EndScrollView();
-		if (GUI.Button(new Rect(5, 430, 100, 25), "Clear")) {
+		GUILayout.EndScrollView();
+
+		if (GUILayout.Button("Clear")) {
 			Logger.LogList.Clear();
 		}
+
+		_logFilter = GUILayout.TextField(_logFilter);
+
+		// Make the window draggable
+		GUI.DragWindow(new Rect(0, 0, 10000, 20));
 	}
 }

@@ -18,7 +18,7 @@ public static class Logger {
 			Console.WriteLine(logMessage);
 			System.Diagnostics.Debugger.Log(0, name, message.ToString());
 		#endif
-		AddLog(name, logMessage);
+		AddLog(logMessage);
     }
 
     public static void LogWarning(string name, object message) {
@@ -33,7 +33,7 @@ public static class Logger {
 			Console.WriteLine(logMessage);
 			System.Diagnostics.Debugger.Log(0, name, message.ToString());
 		#endif
-		AddLog(name, logMessage);
+		AddLog(logMessage);
     }
 
     public static void LogError(string name, object message) {
@@ -48,13 +48,13 @@ public static class Logger {
 			Console.WriteLine(logMessage);
 			System.Diagnostics.Debugger.Log(0, name, message.ToString());
 		#endif
-		AddLog(name, logMessage);
+		AddLog(logMessage);
     }
 
-	private static void AddLog(string name, object message) {
+	private static void AddLog(string message) {
 		if (LogList.Count >= _maxLogCount) {
 			LogList.RemoveAt(0);
 		}
-		LogList.Add($"[{name}]: {message}");
+		LogList.Add(message);
 	}
 }
