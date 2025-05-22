@@ -30,7 +30,6 @@ public class CameraController : MonoBehaviour {
 			yaw += _lookVector.x * 0.1f * _lookSpeed;
 			pitch = Mathf.Clamp(pitch, -90, 90);
 			transform.localEulerAngles = new(pitch, yaw, 0);
-			Logger.Log("CamController", $"Pitch: {pitch}, Yaw: {yaw}");	
 		}
 
 		if (_moveVector != Vector2.zero) {
@@ -56,11 +55,8 @@ public class CameraController : MonoBehaviour {
 		}
 		else {
 			// If the camera is outside the bounds, clamp it to the bounds
-
 			transform.position = _constraintBox.Constraints.ClosestPoint(position);
-			;
 		}
-
 	}
 
 }
