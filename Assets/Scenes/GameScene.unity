@@ -3004,7 +3004,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 825764369118356696, guid: b87c066456df4c54b8231485334cbf2c, type: 3}
       propertyPath: _showLogging
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 825764369118356696, guid: b87c066456df4c54b8231485334cbf2c, type: 3}
       propertyPath: _showSubscriptionLogs
@@ -3243,7 +3243,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8861645498566319406, guid: ad653da38c914d542be1c8c57ca303f2, type: 3}
       propertyPath: _lookSpeed
-      value: 3.5
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8861645498566319406, guid: ad653da38c914d542be1c8c57ca303f2, type: 3}
       propertyPath: _constraintBox

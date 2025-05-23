@@ -19,7 +19,7 @@ public class CameraController : MonoBehaviour {
 		EventBus.Instance.Subscribe<Vector2>(EventType.PLAYER_MOVE, OnPlayerMove);
 	}
 
-	private void FixedUpdate() {
+	private void Update() {
 		if (_lookVector != Vector2.zero) {
 
 			float pitch = transform.localEulerAngles.x;
@@ -31,6 +31,10 @@ public class CameraController : MonoBehaviour {
 			pitch = Mathf.Clamp(pitch, -90, 90);
 			transform.localEulerAngles = new(pitch, yaw, 0);
 		}
+	}
+
+	private void FixedUpdate() {
+
 
 		if (_moveVector != Vector2.zero) {
 

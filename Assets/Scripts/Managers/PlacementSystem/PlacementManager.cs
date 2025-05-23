@@ -145,6 +145,7 @@ public class PlacementManager : MonoBehaviour {
 			GameObject newPlacement = Instantiate(_buildablePrefab, _currentPlacedPrefab.transform.position, _currentPlacedPrefab.transform.rotation);
 			newPlacement.transform.parent = _placementPosition.transform;
 
+			_buildablePrefab.transform.rotation = _currentPlacedPrefab.transform.rotation;
 			EventBus.Instance.TriggerEvent<GameObject>(EventType.CHANGE_STRUCTURE, _buildablePrefab);
 		}
 	}
