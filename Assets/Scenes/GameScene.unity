@@ -3197,6 +3197,10 @@ PrefabInstance:
       propertyPath: _rotationFactor
       value: 2.5
       objectReference: {fileID: 0}
+    - target: {fileID: 3946173081362763912, guid: ad653da38c914d542be1c8c57ca303f2, type: 3}
+      propertyPath: _tempBuildLayers.m_Bits
+      value: 512
+      objectReference: {fileID: 0}
     - target: {fileID: 5247608738185413605, guid: ad653da38c914d542be1c8c57ca303f2, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.22
