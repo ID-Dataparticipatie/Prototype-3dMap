@@ -68,6 +68,11 @@ public class InputManager : MonoBehaviour {
 		}
 	}
 
+	public void OnRemoveStructure(InputValue value) {
+		if (CheckTimeScale())
+			EventBus.Instance.TriggerEvent(EventType.REMOVE_STRUCTURE);
+	}
+
 	public void OnPlace(InputValue value) {
 		if (CheckTimeScale())
 			EventBus.Instance.TriggerEvent(EventType.PLACE_STRUCTURE);

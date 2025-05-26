@@ -52,6 +52,8 @@ public class PlacementManager : MonoBehaviour {
 		EventBus.Instance.Subscribe<float>(EventType.ROTATE_STRUCTURE, OnRotateStructure);
 		EventBus.Instance.Subscribe<GameObject>(EventType.CHANGE_STRUCTURE, SwitchPrefab);
 		EventBus.Instance.Subscribe(EventType.PLACE_STRUCTURE, OnPlaceStructure);
+		EventBus.Instance.Subscribe(EventType.REMOVE_STRUCTURE, OnRemoveStructure);
+
 	}
 
 	void FixedUpdate() {
@@ -144,9 +146,23 @@ public class PlacementManager : MonoBehaviour {
 		if (_canPlace) {
 			GameObject newPlacement = Instantiate(_buildablePrefab, _currentPlacedPrefab.transform.position, _currentPlacedPrefab.transform.rotation);
 			newPlacement.transform.parent = _placementPosition.transform;
+			newPlacement.AddComponent<MeshCollider>();
+			newPlacement.layer = 9;
 
 			_buildablePrefab.transform.rotation = _currentPlacedPrefab.transform.rotation;
 			EventBus.Instance.TriggerEvent<GameObject>(EventType.CHANGE_STRUCTURE, _buildablePrefab);
+		}
+	}
+
+	private void OnRemoveStructure() {
+		int layer = 9;
+		int layerMask = 1 << layer;
+		Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+			
+		if (Physics.Raycast(ray, out hit, 100,layerMask)) {
+
+			Destroy(hit.collider.gameObject);
 		}
 	}
 }
