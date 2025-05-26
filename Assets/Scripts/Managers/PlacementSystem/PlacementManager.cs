@@ -74,7 +74,9 @@ public class PlacementManager : MonoBehaviour {
 	}
 
 	public void SwitchPrefab(GameObject prefab) {
+		Quaternion rotation = Quaternion.identity;
 		if (_currentPlacedPrefab != null) {
+			rotation = _currentPlacedPrefab.transform.rotation;
 			Destroy(_currentPlacedPrefab);
 		}
 
@@ -83,10 +85,14 @@ public class PlacementManager : MonoBehaviour {
 			return;
 		}
 
-		_buildablePrefab = prefab;
-		_currentPlacedPrefab = Instantiate(prefab, _placementPosition.point, prefab.transform.rotation);
-		_currentPlacedPrefab.transform.parent = _placementPosition.transform;
+		if(rotation == Quaternion.identity) {
+			// If the rotation is not set, use the prefab's rotation
+			rotation = prefab.transform.rotation;
+		}
 
+		_buildablePrefab = prefab;
+		_currentPlacedPrefab = Instantiate(prefab, _placementPosition.point, rotation);
+		_currentPlacedPrefab.transform.parent = _placementPosition.transform;
 	}
 
 	private void SwitchPlacementHightlight() {
@@ -149,7 +155,6 @@ public class PlacementManager : MonoBehaviour {
 			newPlacement.AddComponent<MeshCollider>();
 			newPlacement.layer = 9;
 
-			_buildablePrefab.transform.rotation = _currentPlacedPrefab.transform.rotation;
 			EventBus.Instance.TriggerEvent<GameObject>(EventType.CHANGE_STRUCTURE, _buildablePrefab);
 		}
 	}
