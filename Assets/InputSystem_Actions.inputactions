@@ -485,6 +485,17 @@
                     "action": "RemoveStructure",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1c185e19-bbc8-4164-8fa9-03a623d6fba6",
+                    "path": "<Keyboard>/f",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "RemoveStructure",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },

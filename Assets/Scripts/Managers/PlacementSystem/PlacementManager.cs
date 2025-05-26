@@ -15,6 +15,9 @@ public class PlacementManager : MonoBehaviour {
 	private LayerMask _buildableLayers;
 
 	[SerializeField]
+	private LayerMask _tempBuildLayers;
+
+	[SerializeField]
 	private float _rotationFactor = 2.5f;
 
 	[SerializeField]
@@ -85,7 +88,7 @@ public class PlacementManager : MonoBehaviour {
 			return;
 		}
 
-		if(rotation == Quaternion.identity) {
+		if (rotation == Quaternion.identity) {
 			// If the rotation is not set, use the prefab's rotation
 			rotation = prefab.transform.rotation;
 		}
@@ -152,21 +155,22 @@ public class PlacementManager : MonoBehaviour {
 		if (_canPlace) {
 			GameObject newPlacement = Instantiate(_buildablePrefab, _currentPlacedPrefab.transform.position, _currentPlacedPrefab.transform.rotation);
 			newPlacement.transform.parent = _placementPosition.transform;
+
+			//Add a mesh collider for the raycast to delete the placed object
 			newPlacement.AddComponent<MeshCollider>();
-			newPlacement.layer = 9;
+			//Turn the layermask into a layer and apply it to the placed object
+			newPlacement.layer =  (int)Mathf.Log(_tempBuildLayers, 2);
 
 			EventBus.Instance.TriggerEvent<GameObject>(EventType.CHANGE_STRUCTURE, _buildablePrefab);
 		}
 	}
 
 	private void OnRemoveStructure() {
-		int layer = 9;
-		int layerMask = 1 << layer;
+		
 		Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
 			
-		if (Physics.Raycast(ray, out hit, 100,layerMask)) {
-
+		//check if raycast collides with an placed object and delete it
+		if (Physics.Raycast(ray, out RaycastHit hit, 100, _tempBuildLayers)) {
 			Destroy(hit.collider.gameObject);
 		}
 	}
