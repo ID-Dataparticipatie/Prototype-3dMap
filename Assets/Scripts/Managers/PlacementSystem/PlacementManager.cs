@@ -155,12 +155,7 @@ public class PlacementManager : MonoBehaviour {
 			GameObject newPlacement = Instantiate(_buildablePrefab, _currentPlacedPrefab.transform.position, _currentPlacedPrefab.transform.rotation);
 			newPlacement.transform.parent = _placementPosition.transform;
 
-
-			//TODO improve this. Some objects have mutiple or weirdly placed colliders.
-			//Add a mesh collider for the raycast to delete the placed object
-			newPlacement.AddComponent<MeshCollider>();
-			//Turn the layermask into a layer and apply it to the placed object
-			newPlacement.layer = (int)Mathf.Log(_tempBuildLayers, 2);
+			newPlacement.AddComponent<PlacedObject>();
 
 			EventBus.Instance.TriggerEvent<GameObject>(EventType.CHANGE_STRUCTURE, _buildablePrefab);
 		}
@@ -172,15 +167,13 @@ public class PlacementManager : MonoBehaviour {
 
 		//check if raycast collides with an placed object and delete it
 		if (ShootSelectorRay(ray, out RaycastHit hit, _tempBuildLayers)) {
-			Destroy(hit.collider.gameObject);
+			Destroy(FindClosestPlacedRoot(hit.collider.gameObject));
 		}
 	}
 
 
-
-
 	private bool ShootSelectorRay(Ray ray, out RaycastHit hitInfo, LayerMask layerMask = default, float length = 100.0f) {
-		if(layerMask == default) {
+		if (layerMask == default) {
 			layerMask = ~0; // Cannot set the "Everything" layer directly so use default as a placeholder
 		}
 		Debug.DrawRay(ray.origin, ray.direction * length, Color.red, 0.2f);
@@ -188,5 +181,9 @@ public class PlacementManager : MonoBehaviour {
 			return true;
 		}
 		return false;
+	}
+
+	private GameObject FindClosestPlacedRoot(GameObject start) {
+		return start.GetComponentInParent<PlacedObject>().gameObject ?? start;
 	}
 }
