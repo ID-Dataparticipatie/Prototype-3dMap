@@ -34,8 +34,6 @@ public class CameraController : MonoBehaviour {
 	}
 
 	private void FixedUpdate() {
-
-
 		if (_moveVector != Vector2.zero) {
 
 			Vector3 moveDirection = (transform.forward * _moveVector.y) + (transform.right * _moveVector.x);

@@ -93,6 +93,13 @@ public class PlacementManager : MonoBehaviour {
 			rotation = _currentPlacedPrefab.transform.rotation;
 			Destroy(_currentPlacedPrefab);
 		}
+		// Handle edge case where placement position hasn't been set when spawning a new prefab
+		else if (_placementPosition.collider == null) {
+			Ray ray = _playerView.ViewportPointToRay(new Vector3(0.5f, 0.25f, 0));
+			if (ShootSelectorRay(ray, out RaycastHit hit)) {
+				_placementPosition = hit;
+			}
+		}
 
 		if (prefab == null) {
 			Logger.LogWarning("PlacementManager", "Prefab is null. Cannot set placement.");

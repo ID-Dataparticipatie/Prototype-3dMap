@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bfffc7dc3537c364a91682a528dc7591, type: 3}
-  m_Name: PlacablePouh
+  m_Name: POD7
   m_EditorClassIdentifier: 
   ObjectName: PouhPouhNouNou
   Prefab: {fileID: 7513059173118578197, guid: 0cfbb434010c8dec2a9d91c280f5d405, type: 3}
