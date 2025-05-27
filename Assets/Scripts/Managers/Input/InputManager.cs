@@ -47,6 +47,12 @@ public class InputManager : MonoBehaviour {
 		}
 	}
 
+	public void OnChangeCamera(InputValue value) {
+		if (CheckTimeScale()) {
+			EventBus.Instance.TriggerEvent(EventType.CHANGE_CAMERA);
+		}
+	}
+
 	// Build mode!
 	public void OnMoveStructure(InputValue value) {
 		if (CheckTimeScale()) {

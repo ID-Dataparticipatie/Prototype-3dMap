@@ -39,7 +39,7 @@ public class PlacementManager : MonoBehaviour {
 			Instance = this;
 		}
 		else {
-			Logger.LogWarning("PreviewSystem", "Multiple instances of PreviewSystem detected. Destroying duplicate.");
+			Logger.LogWarning("Placementmanager", "Multiple instances of PlacementManager detected. Destroying duplicate.");
 			Destroy(gameObject);
 		}
 	}
@@ -48,7 +48,7 @@ public class PlacementManager : MonoBehaviour {
 		if (_playerView == null) {
 			_playerView = Camera.main;
 		}
-		EventBus.Instance.Subscribe<(Vector2, bool)>(EventType.MOVE_STRUCTURE, (data) => { _lastInput = data; OnMoveStructure(data.Item1, data.Item2); }); // yes I should probably fix stupid stuff like this in eventbus but I cannot be bothered right now
+		EventBus.Instance.Subscribe<(Vector2, bool)>(EventType.MOVE_STRUCTURE, MoveStructureWrapper); // yes I should probably fix stupid stuff like this in eventbus but I cannot be bothered right now
 		EventBus.Instance.Subscribe<float>(EventType.ROTATE_STRUCTURE, OnRotateStructure);
 		EventBus.Instance.Subscribe<GameObject>(EventType.CHANGE_STRUCTURE, SwitchPrefab);
 		EventBus.Instance.Subscribe(EventType.PLACE_STRUCTURE, OnPlaceStructure);
@@ -62,6 +62,16 @@ public class PlacementManager : MonoBehaviour {
 			OnMoveStructure(_gamepadInput, true);
 		}
 		SwitchPlacementHightlight();
+	}
+
+	void OnDisable() {
+		if (Instance == this) {
+			Instance = null;
+		}
+		EventBus.Instance.Unsubscribe<(Vector2, bool)>(EventType.MOVE_STRUCTURE, MoveStructureWrapper); 
+		EventBus.Instance.Unsubscribe<float>(EventType.ROTATE_STRUCTURE, OnRotateStructure);
+		EventBus.Instance.Unsubscribe<GameObject>(EventType.CHANGE_STRUCTURE, SwitchPrefab);
+		EventBus.Instance.Unsubscribe(EventType.PLACE_STRUCTURE, OnPlaceStructure);
 	}
 
 
@@ -83,7 +93,7 @@ public class PlacementManager : MonoBehaviour {
 			return;
 		}
 
-		if(rotation == Quaternion.identity) {
+		if (rotation == Quaternion.identity) {
 			// If the rotation is not set, use the prefab's rotation
 			rotation = prefab.transform.rotation;
 		}
@@ -117,6 +127,10 @@ public class PlacementManager : MonoBehaviour {
 			}
 			renderer.materials = materials;
 		}
+	}
+
+	private void MoveStructureWrapper((Vector2, bool) data) {
+		OnMoveStructure(data.Item1, data.Item2);
 	}
 
 	private void OnMoveStructure(Vector2 position, bool useCenter) {
