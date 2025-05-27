@@ -12,7 +12,9 @@ public class EventBus : MonoBehaviour {
 
 	private static string _logname = "EventBus";
 
-
+	private static bool _isShuttingDown = false;
+	public static bool IsShuttingDown => _isShuttingDown;
+	
 	private Hashtable _eventHash = new();
 	private static EventBus _eventBus;
 	public static EventBus Instance {
@@ -47,6 +49,14 @@ public class EventBus : MonoBehaviour {
 		}
 		DontDestroyOnLoad(Instance);
 	}
+
+	private void OnApplicationQuit() {
+        _isShuttingDown = true;
+    }
+
+    private void OnDestroy() {
+        _isShuttingDown = true;
+    }
 
 	public void Subscribe<T>(EventType eventName, UnityAction<T> listener) {
 		UnityEvent<T> newEvent;
