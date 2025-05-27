@@ -45,6 +45,12 @@ public class CameraController : MonoBehaviour {
 
 	}
 
+	void OnDisable() {
+		if(EventBus.IsShuttingDown) return;
+		EventBus.Instance.Unsubscribe<Vector2>(EventType.PLAYER_LOOK, OnPlayerLook);
+		EventBus.Instance.Unsubscribe<Vector2>(EventType.PLAYER_MOVE, OnPlayerMove);
+	}
+
 	private void OnPlayerLook(Vector2 direction) {
 		_lookVector = direction;
 	}

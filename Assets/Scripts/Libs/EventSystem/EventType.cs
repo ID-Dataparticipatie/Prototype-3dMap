@@ -10,6 +10,7 @@ public enum EventType {
 	ROTATE_STRUCTURE,
 	CHANGE_STRUCTURE,
 	PLACE_STRUCTURE,
+	REMOVE_STRUCTURE,
 
 	// Menu toggles
 	MENU_PAUSE,

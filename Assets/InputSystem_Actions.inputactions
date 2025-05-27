@@ -69,9 +69,18 @@
                     "initialStateCheck": true
                 },
                 {
+                    "name": "RemoveStructure",
+                    "type": "Button",
+                    "id": "8baf45a9-b1db-4bd9-ab8b-4835e810db50",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "ChangeCamera",
                     "type": "Button",
-                    "id": "82fd727e-95bf-4568-a4e0-20359bb0b9f4",
+                    "id": "0ca01dc2-8b53-4919-814d-9a4fe3bb9db1",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -466,11 +475,44 @@
                 },
                 {
                     "name": "",
-                    "id": "bdaf5576-18e2-4b86-a1b5-d6b49ce66a95",
-                    "path": "<Keyboard>/c",
+                    "id": "ab31f2d1-ecad-4707-9336-c811b548160e",
+                    "path": "<Keyboard>/{Cancel}",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "RemoveStructure",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "7bbadbac-f032-4ccd-a9e3-276c0512a399",
+                    "path": "<Gamepad>/select",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
+                    "action": "RemoveStructure",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1c185e19-bbc8-4164-8fa9-03a623d6fba6",
+                    "path": "<Keyboard>/f",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "RemoveStructure",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "43d552e6-a7b8-4770-a45f-37466c5b99f4",
+                    "path": "<Keyboard>/c",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
                     "action": "ChangeCamera",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -512,7 +554,7 @@
                     "name": "Cancel",
                     "type": "Button",
                     "id": "15cef263-9014-4fd5-94d9-4e4a6234a6ef",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
