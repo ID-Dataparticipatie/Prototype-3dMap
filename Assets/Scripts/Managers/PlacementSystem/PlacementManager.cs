@@ -206,6 +206,6 @@ public class PlacementManager : MonoBehaviour {
 	}
 
 	private GameObject FindClosestPlacedRoot(GameObject start) {
-		return start.GetComponentInParent<PlacedObject>().gameObject ?? start;
+		return start.GetComponentInParent<PlacedObject>().gameObject 	!= null ? start.GetComponentInParent<PlacedObject>().gameObject : start;
 	}
 }
