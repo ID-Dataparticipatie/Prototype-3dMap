@@ -139,9 +139,8 @@ public class PlacementManager : MonoBehaviour {
 			ray = _playerView.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
 		}
 
-		Debug.DrawRay(ray.origin, ray.direction * 100.0f, Color.red);
 
-		if (Physics.Raycast(ray, out RaycastHit hit, 100.0f)) {
+		if (ShootSelectorRay(ray, out RaycastHit hit)) {
 			_placementPosition = hit;
 			MovePrefab();
 		}
@@ -156,22 +155,38 @@ public class PlacementManager : MonoBehaviour {
 			GameObject newPlacement = Instantiate(_buildablePrefab, _currentPlacedPrefab.transform.position, _currentPlacedPrefab.transform.rotation);
 			newPlacement.transform.parent = _placementPosition.transform;
 
+
+			//TODO improve this. Some objects have mutiple or weirdly placed colliders.
 			//Add a mesh collider for the raycast to delete the placed object
 			newPlacement.AddComponent<MeshCollider>();
 			//Turn the layermask into a layer and apply it to the placed object
-			newPlacement.layer =  (int)Mathf.Log(_tempBuildLayers, 2);
+			newPlacement.layer = (int)Mathf.Log(_tempBuildLayers, 2);
 
 			EventBus.Instance.TriggerEvent<GameObject>(EventType.CHANGE_STRUCTURE, _buildablePrefab);
 		}
 	}
 
 	private void OnRemoveStructure() {
-		
+
 		Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-			
+
 		//check if raycast collides with an placed object and delete it
-		if (Physics.Raycast(ray, out RaycastHit hit, 100, _tempBuildLayers)) {
+		if (ShootSelectorRay(ray, out RaycastHit hit, _tempBuildLayers)) {
 			Destroy(hit.collider.gameObject);
 		}
+	}
+
+
+
+
+	private bool ShootSelectorRay(Ray ray, out RaycastHit hitInfo, LayerMask layerMask = default, float length = 100.0f) {
+		if(layerMask == default) {
+			layerMask = ~0; // Cannot set the "Everything" layer directly so use default as a placeholder
+		}
+		Debug.DrawRay(ray.origin, ray.direction * length, Color.red, 0.2f);
+		if (Physics.Raycast(ray, out hitInfo, length, layerMask)) {
+			return true;
+		}
+		return false;
 	}
 }
