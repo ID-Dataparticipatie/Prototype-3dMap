@@ -14,7 +14,7 @@ public class CameraController : MonoBehaviour {
 
 
 
-	private void Start() {
+	void OnEnable() {
 		EventBus.Instance.Subscribe<Vector2>(EventType.PLAYER_LOOK, OnPlayerLook);
 		EventBus.Instance.Subscribe<Vector2>(EventType.PLAYER_MOVE, OnPlayerMove);
 	}

@@ -73,7 +73,8 @@ public class PlacementManager : MonoBehaviour {
 		if (Instance == this) {
 			Instance = null;
 		}
-		EventBus.Instance.Unsubscribe<(Vector2, bool)>(EventType.MOVE_STRUCTURE, MoveStructureWrapper); 
+		if (EventBus.IsShuttingDown) return;
+		EventBus.Instance.Unsubscribe<(Vector2, bool)>(EventType.MOVE_STRUCTURE, MoveStructureWrapper);
 		EventBus.Instance.Unsubscribe<float>(EventType.ROTATE_STRUCTURE, OnRotateStructure);
 		EventBus.Instance.Unsubscribe<GameObject>(EventType.CHANGE_STRUCTURE, SwitchPrefab);
 		EventBus.Instance.Unsubscribe(EventType.PLACE_STRUCTURE, OnPlaceStructure);
@@ -171,7 +172,7 @@ public class PlacementManager : MonoBehaviour {
 
 			newPlacement.AddComponent<PlacedObject>();
 
-			EventBus.Instance.TriggerEvent<GameObject>(EventType.CHANGE_STRUCTURE, _buildablePrefab);
+			EventBus.Instance.TriggerEvent(EventType.CHANGE_STRUCTURE, _buildablePrefab);
 		}
 	}
 
