@@ -14,7 +14,7 @@ public class CameraController : MonoBehaviour {
 
 
 
-	private void Start() {
+	void OnEnable() {
 		EventBus.Instance.Subscribe<Vector2>(EventType.PLAYER_LOOK, OnPlayerLook);
 		EventBus.Instance.Subscribe<Vector2>(EventType.PLAYER_MOVE, OnPlayerMove);
 	}
@@ -34,8 +34,6 @@ public class CameraController : MonoBehaviour {
 	}
 
 	private void FixedUpdate() {
-
-
 		if (_moveVector != Vector2.zero) {
 
 			Vector3 moveDirection = (transform.forward * _moveVector.y) + (transform.right * _moveVector.x);

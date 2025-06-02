@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: POD6
   m_EditorClassIdentifier: 
   ObjectName: tree-type-A
-  Prefab: {fileID: 128322510527707026, guid: 9efb2638cadf04a7d9f711b8a141df62, type: 3}
+  Prefab: {fileID: 4126379289218943248, guid: f072356c04e59430aa7306ed5964c592, type: 3}

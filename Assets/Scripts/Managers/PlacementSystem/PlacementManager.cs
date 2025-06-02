@@ -6,8 +6,8 @@ public class PlacementManager : MonoBehaviour {
 	[SerializeField]
 	private Camera _playerView;
 
-	private GameObject _buildablePrefab;
-	private GameObject _currentPlacedPrefab;
+	private static GameObject _buildablePrefab;
+	private static GameObject _currentPlacedPrefab;
 
 	private RaycastHit _placementPosition;
 
@@ -42,21 +42,23 @@ public class PlacementManager : MonoBehaviour {
 			Instance = this;
 		}
 		else {
-			Logger.LogWarning("PreviewSystem", "Multiple instances of PreviewSystem detected. Destroying duplicate.");
+			Logger.LogWarning("Placementmanager", "Multiple instances of PlacementManager detected. Destroying duplicate.");
 			Destroy(gameObject);
 		}
+	}
+
+	void OnEnable() {
+		EventBus.Instance.Subscribe<(Vector2, bool)>(EventType.MOVE_STRUCTURE, MoveStructureWrapper);
+		EventBus.Instance.Subscribe<float>(EventType.ROTATE_STRUCTURE, OnRotateStructure);
+		EventBus.Instance.Subscribe<GameObject>(EventType.CHANGE_STRUCTURE, SwitchPrefab);
+		EventBus.Instance.Subscribe(EventType.PLACE_STRUCTURE, OnPlaceStructure);
+		EventBus.Instance.Subscribe(EventType.REMOVE_STRUCTURE, OnRemoveStructure);
 	}
 
 	private void Start() {
 		if (_playerView == null) {
 			_playerView = Camera.main;
 		}
-		EventBus.Instance.Subscribe<(Vector2, bool)>(EventType.MOVE_STRUCTURE, (data) => { _lastInput = data; OnMoveStructure(data.Item1, data.Item2); }); // yes I should probably fix stupid stuff like this in eventbus but I cannot be bothered right now
-		EventBus.Instance.Subscribe<float>(EventType.ROTATE_STRUCTURE, OnRotateStructure);
-		EventBus.Instance.Subscribe<GameObject>(EventType.CHANGE_STRUCTURE, SwitchPrefab);
-		EventBus.Instance.Subscribe(EventType.PLACE_STRUCTURE, OnPlaceStructure);
-		EventBus.Instance.Subscribe(EventType.REMOVE_STRUCTURE, OnRemoveStructure);
-
 	}
 
 	void FixedUpdate() {
@@ -67,6 +69,18 @@ public class PlacementManager : MonoBehaviour {
 			OnMoveStructure(_gamepadInput, true);
 		}
 		SwitchPlacementHightlight();
+	}
+
+	void OnDisable() {
+		if (Instance == this) {
+			Instance = null;
+		}
+		if (EventBus.IsShuttingDown) return;
+		EventBus.Instance.Unsubscribe<(Vector2, bool)>(EventType.MOVE_STRUCTURE, MoveStructureWrapper);
+		EventBus.Instance.Unsubscribe<float>(EventType.ROTATE_STRUCTURE, OnRotateStructure);
+		EventBus.Instance.Unsubscribe<GameObject>(EventType.CHANGE_STRUCTURE, SwitchPrefab);
+		EventBus.Instance.Unsubscribe(EventType.PLACE_STRUCTURE, OnPlaceStructure);
+		// Destroy(_currentPlacedPrefab);
 	}
 
 
@@ -81,6 +95,13 @@ public class PlacementManager : MonoBehaviour {
 		if (_currentPlacedPrefab != null) {
 			rotation = _currentPlacedPrefab.transform.rotation;
 			Destroy(_currentPlacedPrefab);
+		}
+		// Handle edge case where placement position hasn't been set when spawning a new prefab
+		else if (_placementPosition.collider == null) {
+			Ray ray = _playerView.ViewportPointToRay(new Vector3(0.5f, 0.25f, 0));
+			if (ShootSelectorRay(ray, out RaycastHit hit)) {
+				_placementPosition = hit;
+			}
 		}
 
 		if (prefab == null) {
@@ -124,6 +145,10 @@ public class PlacementManager : MonoBehaviour {
 		}
 	}
 
+	private void MoveStructureWrapper((Vector2, bool) data) {
+		OnMoveStructure(data.Item1, data.Item2);
+	}
+
 	private void OnMoveStructure(Vector2 position, bool useCenter) {
 
 		// Use the mouse position
@@ -152,12 +177,13 @@ public class PlacementManager : MonoBehaviour {
 
 	private void OnPlaceStructure() {
 		if (_canPlace) {
+			Transform newParent = _placementPosition.transform;
 			GameObject newPlacement = Instantiate(_buildablePrefab, _currentPlacedPrefab.transform.position, _currentPlacedPrefab.transform.rotation);
-			newPlacement.transform.parent = _placementPosition.transform;
+			newPlacement.transform.parent = newParent;
 
 			newPlacement.AddComponent<PlacedObject>();
 
-			EventBus.Instance.TriggerEvent<GameObject>(EventType.CHANGE_STRUCTURE, _buildablePrefab);
+			EventBus.Instance.TriggerEvent(EventType.CHANGE_STRUCTURE, _buildablePrefab);
 		}
 	}
 
@@ -184,6 +210,6 @@ public class PlacementManager : MonoBehaviour {
 	}
 
 	private GameObject FindClosestPlacedRoot(GameObject start) {
-		return start.GetComponentInParent<PlacedObject>().gameObject ?? start;
+		return start.GetComponentInParent<PlacedObject>().gameObject 	!= null ? start.GetComponentInParent<PlacedObject>().gameObject : start;
 	}
 }

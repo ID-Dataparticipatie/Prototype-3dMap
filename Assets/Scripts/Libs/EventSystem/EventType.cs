@@ -3,6 +3,7 @@ public enum EventType {
 	// Player
 	PLAYER_MOVE,
 	PLAYER_LOOK,
+	CHANGE_CAMERA,
 
 	// Build mode
 	MOVE_STRUCTURE,
