@@ -6,8 +6,8 @@ public class PlacementManager : MonoBehaviour {
 	[SerializeField]
 	private Camera _playerView;
 
-	private GameObject _buildablePrefab;
-	private GameObject _currentPlacedPrefab;
+	private static GameObject _buildablePrefab;
+	private static GameObject _currentPlacedPrefab;
 
 	private RaycastHit _placementPosition;
 
@@ -47,16 +47,18 @@ public class PlacementManager : MonoBehaviour {
 		}
 	}
 
-	private void Start() {
-		if (_playerView == null) {
-			_playerView = Camera.main;
-		}
-		EventBus.Instance.Subscribe<(Vector2, bool)>(EventType.MOVE_STRUCTURE, MoveStructureWrapper); // yes I should probably fix stupid stuff like this in eventbus but I cannot be bothered right now
+	void OnEnable() {
+		EventBus.Instance.Subscribe<(Vector2, bool)>(EventType.MOVE_STRUCTURE, MoveStructureWrapper);
 		EventBus.Instance.Subscribe<float>(EventType.ROTATE_STRUCTURE, OnRotateStructure);
 		EventBus.Instance.Subscribe<GameObject>(EventType.CHANGE_STRUCTURE, SwitchPrefab);
 		EventBus.Instance.Subscribe(EventType.PLACE_STRUCTURE, OnPlaceStructure);
 		EventBus.Instance.Subscribe(EventType.REMOVE_STRUCTURE, OnRemoveStructure);
+	}
 
+	private void Start() {
+		if (_playerView == null) {
+			_playerView = Camera.main;
+		}
 	}
 
 	void FixedUpdate() {
@@ -78,6 +80,7 @@ public class PlacementManager : MonoBehaviour {
 		EventBus.Instance.Unsubscribe<float>(EventType.ROTATE_STRUCTURE, OnRotateStructure);
 		EventBus.Instance.Unsubscribe<GameObject>(EventType.CHANGE_STRUCTURE, SwitchPrefab);
 		EventBus.Instance.Unsubscribe(EventType.PLACE_STRUCTURE, OnPlaceStructure);
+		// Destroy(_currentPlacedPrefab);
 	}
 
 
@@ -174,8 +177,9 @@ public class PlacementManager : MonoBehaviour {
 
 	private void OnPlaceStructure() {
 		if (_canPlace) {
+			Transform newParent = _placementPosition.transform;
 			GameObject newPlacement = Instantiate(_buildablePrefab, _currentPlacedPrefab.transform.position, _currentPlacedPrefab.transform.rotation);
-			newPlacement.transform.parent = _placementPosition.transform;
+			newPlacement.transform.parent = newParent;
 
 			newPlacement.AddComponent<PlacedObject>();
 
