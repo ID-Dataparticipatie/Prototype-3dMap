@@ -14,6 +14,7 @@ public enum EventType {
 
 	// Menu toggles
 	MENU_PAUSE,
-	MENU_BUILD
+	MENU_BUILD,
+	LEGEND_CONTROLS
 
 }

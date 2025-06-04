@@ -1,0 +1,70 @@
+<engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <engine:Foldout text="controls (H)" enabled="true" name="Controls" value="false" style="left: 0; bottom: 0; position: absolute; width: 198px; background-color: rgba(255, 255, 255, 0); background-image: none; -unity-background-image-tint-color: rgba(255, 255, 255, 0.61); padding-left: 0; -unity-font-style: bold; -unity-text-outline-width: 0; -unity-text-outline-color: rgba(255, 255, 255, 0.64); font-size: 14px;">
+        <engine:VisualElement style="flex-grow: 1; background-color: rgba(196, 219, 219, 0.67); -unity-font-style: normal; -unity-text-outline-width: 0;">
+            <engine:VisualElement style="flex-grow: 1; flex-direction: row; justify-content: space-between; font-size: 8px;">
+                <engine:Label text="Camera wisselen" style="margin-top: 0; margin-bottom: 0;" />
+                <engine:VisualElement style="padding-right: -26px; background-position-x: right 0;">
+                    <engine:VisualElement style="flex-grow: 1; width: auto; height: auto; background-image: none; -unity-background-scale-mode: scale-to-fit; background-position-x: right 0;">
+                        <engine:Label text="C" style="padding-right: 2px; margin-top: 0; margin-bottom: 2px;" />
+                    </engine:VisualElement>
+                </engine:VisualElement>
+            </engine:VisualElement>
+            <engine:VisualElement style="flex-grow: 1; flex-direction: row; justify-content: space-between; font-size: 8px;">
+                <engine:Label text="Camera verplaatsen" style="margin-top: 0; margin-bottom: 0;" />
+                <engine:VisualElement style="padding-right: -26px; background-position-x: right 0;">
+                    <engine:VisualElement style="flex-grow: 1; width: auto; height: auto; background-image: url(&quot;project://database/Assets/Sprites/navigation.png?fileID=21300000&amp;guid=4d4e58f09c28482488afb8c8deae8f58&amp;type=3#navigation&quot;); -unity-background-scale-mode: scale-to-fit; background-position-x: right 0;">
+                        <engine:Label text="WASD /" style="padding-right: 18px; margin-top: 0; margin-bottom: 2px;" />
+                    </engine:VisualElement>
+                </engine:VisualElement>
+            </engine:VisualElement>
+            <engine:VisualElement style="flex-grow: 1; flex-direction: row; justify-content: space-between; font-size: 8px;">
+                <engine:Label text="Camera draaien" style="margin-top: 0; margin-bottom: 0;" />
+                <engine:VisualElement style="padding-right: -26px; background-position-x: right 0;">
+                    <engine:VisualElement style="flex-grow: 1; width: auto; height: auto; background-image: url(&quot;project://database/Assets/Sprites/icons8-right-click-24.png?fileID=21300000&amp;guid=1af0fffee145499449184295204266ab&amp;type=3#icons8-right-click-24&quot;); -unity-background-scale-mode: scale-to-fit; background-position-x: right 0;">
+                        <engine:Label style="padding-right: 32px; margin-top: 0; margin-bottom: 2px;" />
+                    </engine:VisualElement>
+                </engine:VisualElement>
+            </engine:VisualElement>
+            <engine:VisualElement style="flex-grow: 1; flex-direction: row; justify-content: space-between; font-size: 8px;">
+                <engine:Label text="Keuze menu open / dicht" style="margin-top: 0; margin-bottom: 0;" />
+                <engine:VisualElement style="padding-right: -26px; background-position-x: right 0;">
+                    <engine:VisualElement style="flex-grow: 1; width: auto; height: auto; background-image: none; -unity-background-scale-mode: scale-to-fit; background-position-x: right 0;">
+                        <engine:Label text="TAB" style="padding-right: 2px; margin-top: 0; margin-bottom: 2px;" />
+                    </engine:VisualElement>
+                </engine:VisualElement>
+            </engine:VisualElement>
+            <engine:VisualElement style="flex-grow: 1; flex-direction: row; justify-content: space-between; font-size: 8px;">
+                <engine:Label text="Preview verplaatsen" style="margin-top: 0; margin-bottom: 0;" />
+                <engine:VisualElement style="padding-right: -26px; background-position-x: right 0;">
+                    <engine:VisualElement style="flex-grow: 1; width: auto; height: auto; background-image: url(&quot;project://database/Assets/Sprites/icons8-left-click-24.png?fileID=21300000&amp;guid=9732285edec4acb4d87cc014b0a6ee5b&amp;type=3#icons8-left-click-24&quot;); -unity-background-scale-mode: scale-to-fit; background-position-x: right 0;">
+                        <engine:Label style="padding-right: 32px; margin-top: 0; margin-bottom: 2px;" />
+                    </engine:VisualElement>
+                </engine:VisualElement>
+            </engine:VisualElement>
+            <engine:VisualElement style="flex-grow: 1; flex-direction: row; justify-content: space-between; font-size: 8px;">
+                <engine:Label text="Preview draaien" style="margin-top: 0; margin-bottom: 0;" />
+                <engine:VisualElement style="padding-right: -26px; background-position-x: right 0;">
+                    <engine:VisualElement style="flex-grow: 1; width: auto; height: auto; background-image: none; -unity-background-scale-mode: scale-to-fit; background-position-x: right 0;">
+                        <engine:Label text="Q,E" style="padding-right: 2px; margin-top: 0; margin-bottom: 2px;" />
+                    </engine:VisualElement>
+                </engine:VisualElement>
+            </engine:VisualElement>
+            <engine:VisualElement style="flex-grow: 1; flex-direction: row; justify-content: space-between; font-size: 8px;">
+                <engine:Label text="Object plaatsen" style="margin-top: 0; margin-bottom: 0;" />
+                <engine:VisualElement style="padding-right: -26px; background-position-x: right 0;">
+                    <engine:VisualElement style="flex-grow: 1; width: auto; height: auto; background-image: none; -unity-background-scale-mode: scale-to-fit; background-position-x: right 0;">
+                        <engine:Label text="Spatie / Enter" style="padding-right: 2px; margin-top: 0; margin-bottom: 2px;" />
+                    </engine:VisualElement>
+                </engine:VisualElement>
+            </engine:VisualElement>
+            <engine:VisualElement style="flex-grow: 1; flex-direction: row; justify-content: space-between; font-size: 8px;">
+                <engine:Label text="Object verwijderen" style="margin-top: 0; margin-bottom: 0;" />
+                <engine:VisualElement style="padding-right: -26px; background-position-x: right 0;">
+                    <engine:VisualElement style="flex-grow: 1; width: auto; height: auto; background-image: none; -unity-background-scale-mode: scale-to-fit; background-position-x: right 0;">
+                        <engine:Label text="F" style="padding-right: 2px; margin-top: 0; margin-bottom: 2px;" />
+                    </engine:VisualElement>
+                </engine:VisualElement>
+            </engine:VisualElement>
+        </engine:VisualElement>
+    </engine:Foldout>
+</engine:UXML>
