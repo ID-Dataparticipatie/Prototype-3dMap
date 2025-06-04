@@ -1,5 +1,4 @@
 using System;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -28,7 +27,9 @@ public class UIManager : MonoBehaviour {
 
 	private void OnToggleControlsLegend() {
 		bool currentvalue = _controlUI.rootVisualElement.Q<Foldout>("Controls").value;
-		Debug.Log($"LALALA Ik werk - {currentvalue}");
+		if (currentvalue) {
+			EventBus.Instance.TriggerEvent(EventType.LEGEND_CONTROLS, false);
+		}
 		//get the value that opens or closes the controls menu and invert it
 		_controlUI.rootVisualElement.Q<Foldout>("Controls").value = !currentvalue;
 	}
