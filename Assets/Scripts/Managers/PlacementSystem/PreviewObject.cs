@@ -26,7 +26,12 @@ public class PreviewObject : MonoBehaviour {
             if (childRenderer.gameObject.TryGetComponent<Collider>(out Collider collider)) {
                 continue;
             }
-            childRenderer.gameObject.AddComponent<MeshCollider>();
+
+            MeshCollider meshCollider = childRenderer.gameObject.AddComponent<MeshCollider>();
+            meshCollider.convex = true;
+            meshCollider.isTrigger = true;
+            print("Mesh done");
+            
         }
         
     }
