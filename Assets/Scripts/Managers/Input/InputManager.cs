@@ -27,7 +27,7 @@ public class InputManager : MonoBehaviour {
 
 		// Switch control map when entering UI state
 		EventBus.Instance.Subscribe<bool>(EventType.MENU_BUILD, state => SetControlMap(state ? "UI" : "Player"));
-		EventBus.Instance.Subscribe<bool>(EventType.LEGEND_CONTROLS, state => SetControlMap(state ? "UI" : "Player"));
+		// EventBus.Instance.Subscribe<bool>(EventType.LEGEND_CONTROLS, state => SetControlMap(state ? "UI" : "Player"));
 	}
 
 
@@ -93,8 +93,6 @@ public class InputManager : MonoBehaviour {
 		EventBus.Instance.TriggerEvent(EventType.MENU_BUILD);
 	}
 	public void OnToggleControlsLegend(InputValue value) {
-		if (CheckTimeScale())
-			EventBus.Instance.TriggerEvent(EventType.LEGEND_CONTROLS, value.isPressed);
 		EventBus.Instance.TriggerEvent(EventType.LEGEND_CONTROLS);
 	}
 

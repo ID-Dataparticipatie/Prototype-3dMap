@@ -51,6 +51,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "ToggleControlsLegend",
+                    "type": "Button",
+                    "id": "55aeb35a-1f3f-4753-835b-f34503a8007f",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
                     "name": "MoveStructure",
                     "type": "Value",
                     "id": "38cac02c-e936-4430-ac8d-98684fcc1ce1",
@@ -81,15 +90,6 @@
                     "name": "ChangeCamera",
                     "type": "Button",
                     "id": "0ca01dc2-8b53-4919-814d-9a4fe3bb9db1",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "ToggleControlsLegend",
-                    "type": "Button",
-                    "id": "55aeb35a-1f3f-4753-835b-f34503a8007f",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -641,15 +641,6 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
-                },
-                {
-                    "name": "ToggleControlsLegend",
-                    "type": "Button",
-                    "id": "10c8e2bd-df6a-409e-856c-f046ec262567",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -1090,17 +1081,6 @@
                     "processors": "",
                     "groups": "XR",
                     "action": "TrackedDeviceOrientation",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "c555ce99-59e1-4f06-a635-53bbae98f973",
-                    "path": "<Keyboard>/h",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Keyboard&Mouse",
-                    "action": "ToggleControlsLegend",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
