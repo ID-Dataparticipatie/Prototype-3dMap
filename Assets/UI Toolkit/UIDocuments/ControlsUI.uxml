@@ -26,6 +26,14 @@
                 </engine:VisualElement>
             </engine:VisualElement>
             <engine:VisualElement style="flex-grow: 1; flex-direction: row; justify-content: space-between; font-size: 8px;">
+                <engine:Label text="Camera draaien (in top down)" style="margin-top: 0; margin-bottom: 0;" />
+                <engine:VisualElement style="padding-right: -26px; background-position-x: right 0;">
+                    <engine:VisualElement style="flex-grow: 1; width: auto; height: auto; background-image: url(&quot;project://database/Assets/Sprites/icons8-mouse-scrolling-24.png?fileID=21300000&amp;guid=5d085cc3c6727c04fbb656b5cfc551ae&amp;type=3#icons8-mouse-scrolling-24&quot;); -unity-background-scale-mode: scale-to-fit; background-position-x: right 0;">
+                        <engine:Label style="padding-right: 32px; margin-top: 0; margin-bottom: 2px;" />
+                    </engine:VisualElement>
+                </engine:VisualElement>
+            </engine:VisualElement>
+            <engine:VisualElement style="flex-grow: 1; flex-direction: row; justify-content: space-between; font-size: 8px;">
                 <engine:Label text="Keuze menu open / dicht" style="margin-top: 0; margin-bottom: 0;" />
                 <engine:VisualElement style="padding-right: -26px; background-position-x: right 0;">
                     <engine:VisualElement style="flex-grow: 1; width: auto; height: auto; background-image: none; -unity-background-scale-mode: scale-to-fit; background-position-x: right 0;">
