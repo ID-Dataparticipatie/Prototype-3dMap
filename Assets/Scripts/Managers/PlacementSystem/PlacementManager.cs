@@ -1,5 +1,8 @@
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
+using UnityEditor;
+using UnityEditorInternal;
 using UnityEngine;
 
 public class PlacementManager : MonoBehaviour {
@@ -117,14 +120,16 @@ public class PlacementManager : MonoBehaviour {
 		_buildablePrefab = prefab;
 		_currentPlacedPrefab = Instantiate(prefab, _placementPosition.point, rotation);
 		_currentPlacedPrefab.transform.parent = _placementPosition.transform;
+		_currentPlacedPrefab.AddComponent<PreviewObject>();
 	}
 
 	private void SwitchPlacementHightlight() {
 		if (_currentPlacedPrefab != null && _placementPosition.transform != null) {
 			List<Renderer> renderers = _currentPlacedPrefab.GetComponentsInChildren<Renderer>().ToList();
+			List<Collider> colliders = _currentPlacedPrefab.GetComponent<PreviewObject>()?.Colliders;
 
 			// Bitwise, if layermask contains object layer
-			if ((_buildableLayers & (1 << _placementPosition.transform.gameObject.layer)) != 0) {
+			if ((_buildableLayers & (1 << _placementPosition.transform.gameObject.layer)) != 0 && colliders.Count == 0) {
 				SetMaterialsInRenderers(renderers, _validPlacementMaterial);
 				_canPlace = true;
 			}
@@ -199,14 +204,17 @@ public class PlacementManager : MonoBehaviour {
 
 
 	private bool ShootSelectorRay(Ray ray, out RaycastHit hitInfo, LayerMask layerMask = default, float length = 100.0f) {
+		
 		if (layerMask == default) {
-			layerMask = ~0; // Cannot set the "Everything" layer directly so use default as a placeholder
+			int ignoredMask = LayerMask.NameToLayer("Ignore Raycast");
+			layerMask = ~(1 << ignoredMask); // Cannot set the "Everything" layer directly so use default as a placeholder
 		}
 		Debug.DrawRay(ray.origin, ray.direction * length, Color.red, 0.2f);
 		if (Physics.Raycast(ray, out hitInfo, length, layerMask)) {
 			return true;
 		}
 		return false;
+
 	}
 
 	private GameObject FindClosestPlacedRoot(GameObject start) {
