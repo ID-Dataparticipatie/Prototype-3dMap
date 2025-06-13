@@ -10,6 +10,7 @@ public class DebugGUI : MonoBehaviour {
 	private float _fpsCount;
 	private string _logFilter = string.Empty;
 
+#if UNITY_EDITOR || DEBUG
 	private IEnumerator Start() {
 		GUI.depth = 2;
 		while (true) {
@@ -58,4 +59,5 @@ public class DebugGUI : MonoBehaviour {
 		// Make the window draggable
 		GUI.DragWindow(new Rect(0, 0, 10000, 20));
 	}
+	#endif
 }
