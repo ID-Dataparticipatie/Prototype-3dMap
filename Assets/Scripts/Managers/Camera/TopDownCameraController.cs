@@ -61,11 +61,11 @@ public class TopDownCameraController : MonoBehaviour {
 	private void OnPlayerMove(Vector2 direction) {
 		_moveVector = direction;
 	}
-	private void OnZoom(float direction) {
-		Vector3 moveDirection = transform.forward * direction;
-		Vector3 newPosition = transform.position + _zoomspeed * Time.deltaTime * moveDirection;
-		SetPositionWithinBounds(newPosition);
-	}
+	// private void OnZoom(float direction) {
+	// 	Vector3 moveDirection = transform.forward * direction;
+	// 	Vector3 newPosition = transform.position + _zoomspeed * Time.deltaTime * moveDirection;
+	// 	SetPositionWithinBounds(newPosition);
+	// }
 
 	private void SetPositionWithinBounds(Vector3 position) {
 		if (_constraintBox == null || _constraintBox.Constraints.Contains(position)) {
