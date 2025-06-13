@@ -20,7 +20,7 @@ public class TopDownCameraController : MonoBehaviour {
 	void OnEnable() {
 		EventBus.Instance.Subscribe<Vector2>(EventType.PLAYER_LOOK, OnPlayerLook);
 		EventBus.Instance.Subscribe<Vector2>(EventType.PLAYER_MOVE, OnPlayerMove);
-		EventBus.Instance.Subscribe<float>(EventType.ZOOM, OnZoom);
+		//EventBus.Instance.Subscribe<float>(EventType.ZOOM, OnZoom);
 	}
 
 	private void Update() {

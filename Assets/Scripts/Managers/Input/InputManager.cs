@@ -47,10 +47,10 @@ public class InputManager : MonoBehaviour {
 			EventBus.Instance.TriggerEvent(EventType.PLAYER_LOOK, value.Get<Vector2>());
 		}
 	}
-	public void OnZoom(InputValue value) {
-		if (CheckTimeScale())
-			EventBus.Instance.TriggerEvent(EventType.ZOOM, value.Get<float>());
-	}
+	// public void OnZoom(InputValue value) {
+	// 	if (CheckTimeScale())
+	// 		EventBus.Instance.TriggerEvent(EventType.ZOOM, value.Get<float>());
+	// }
 
 	public void OnChangeCamera(InputValue value) {
 		if (CheckTimeScale()) {
