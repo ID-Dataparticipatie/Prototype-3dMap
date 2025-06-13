@@ -4,7 +4,7 @@ public enum EventType {
 	PLAYER_MOVE,
 	PLAYER_LOOK,
 	CHANGE_CAMERA,
-	ZOOM,
+	//ZOOM,
 
 	// Build mode
 	MOVE_STRUCTURE,
