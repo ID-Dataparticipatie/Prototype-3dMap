@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: POD1
   m_EditorClassIdentifier: 
   ObjectName: cb-apartment-A
-  Prefab: {fileID: 919132149155446097, guid: b2844ffdf75974ca4992a07a20376a0e, type: 3}
+  Prefab: {fileID: 2571504398995303138, guid: 0c7f1786f206a4f149506fbb91114ee7, type: 3}

@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -9,12 +10,14 @@ public class EventBus : MonoBehaviour {
 
 	[SerializeField, Tooltip("Enables logging of subscription calls")] private bool _showSubscriptionLogs = false;
 	[SerializeField, Tooltip("Enables logging of event triggers")] private bool _showTriggerLogs = false;
+	[SerializeField, Tooltip("Events to log")] private List<EventType> _eventsToShowLogsFor = new();
+
 
 	private static string _logname = "EventBus";
 
 	private static bool _isShuttingDown = false;
 	public static bool IsShuttingDown => _isShuttingDown;
-	
+
 	private Hashtable _eventHash = new();
 	private static EventBus _eventBus;
 	public static EventBus Instance {
@@ -51,12 +54,12 @@ public class EventBus : MonoBehaviour {
 	}
 
 	private void OnApplicationQuit() {
-        _isShuttingDown = true;
-    }
+		_isShuttingDown = true;
+	}
 
-    private void OnDestroy() {
-        _isShuttingDown = true;
-    }
+	private void OnDestroy() {
+		_isShuttingDown = true;
+	}
 
 	public void Subscribe<T>(EventType eventName, UnityAction<T> listener) {
 		UnityEvent<T> newEvent;
@@ -75,7 +78,7 @@ public class EventBus : MonoBehaviour {
 		}
 
 		if (_showSubscriptionLogs) {
-			sendToLogger($"{listener.Target} subscribed to event {eventName}<{typeof(T).Name}>");
+			sendToLogger($"{listener.Target} subscribed to event {eventName}<{typeof(T).Name}>",eventName);
 		}
 	}
 
@@ -95,7 +98,7 @@ public class EventBus : MonoBehaviour {
 		}
 
 		if (_showSubscriptionLogs) {
-			sendToLogger($"{listener} subscribed to event {eventName}");
+			sendToLogger($"{listener} subscribed to event {eventName}",eventName);
 		}
 	}
 
@@ -111,7 +114,7 @@ public class EventBus : MonoBehaviour {
 
 
 			if (_showSubscriptionLogs) {
-				sendToLogger($"{listener.Target} unsubscribed from event {eventName}<{typeof(T).Name}>");
+				sendToLogger($"{listener.Target} unsubscribed from event {eventName}<{typeof(T).Name}>",eventName);
 			}
 		}
 	}
@@ -125,7 +128,7 @@ public class EventBus : MonoBehaviour {
 			Instance._eventHash[eventName] = newEvent;
 
 			if (_showSubscriptionLogs) {
-				sendToLogger($"{listener} unsubscribed from event {eventName}");
+				sendToLogger($"{listener} unsubscribed from event {eventName}",eventName);
 			}
 		}
 	}
@@ -139,7 +142,7 @@ public class EventBus : MonoBehaviour {
 			newEvent.Invoke(val);
 		}
 		if (_showTriggerLogs) {
-			sendToLogger($"Event {eventName} was triggered with value {typeof(T).Name}({val})");
+			sendToLogger($"Event {eventName} was triggered with value {typeof(T).Name}({val})",eventName);
 		}
 	}
 
@@ -151,7 +154,7 @@ public class EventBus : MonoBehaviour {
 			newEvent.Invoke();
 		}
 		if (_showTriggerLogs) {
-			sendToLogger($"Event {eventName} was triggered");
+			sendToLogger($"Event {eventName} was triggered",eventName);
 		}
 	}
 
@@ -160,8 +163,8 @@ public class EventBus : MonoBehaviour {
 		return $"{type}_{eventtype}";
 	}
 
-	private void sendToLogger(string text) {
-		if (_showLogging) {
+	private void sendToLogger(string text, EventType type) {
+		if (_showLogging && (_eventsToShowLogsFor.Contains(type) || _eventsToShowLogsFor.Count == 0)) {
 			Logger.Log(_logname, text);
 		}
 	}

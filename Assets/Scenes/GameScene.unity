@@ -3399,6 +3399,14 @@ PrefabInstance:
       propertyPath: _showSubscriptionLogs
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 825764369118356696, guid: b87c066456df4c54b8231485334cbf2c, type: 3}
+      propertyPath: _eventsToShowLogsFor.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 825764369118356696, guid: b87c066456df4c54b8231485334cbf2c, type: 3}
+      propertyPath: '_eventsToShowLogsFor.Array.data[0]'
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 2036502991142095611, guid: b87c066456df4c54b8231485334cbf2c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

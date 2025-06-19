@@ -34,9 +34,7 @@ public class PreviewObject : MonoBehaviour {
 			meshCollider.convex = true;
 			meshCollider.isTrigger = true;
 			print("Mesh done");
-
 		}
-
 	}
 
 	void Update() {

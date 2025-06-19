@@ -201,13 +201,14 @@ public class PlacementManager : MonoBehaviour {
 
 
 	private bool ShootSelectorRay(Ray ray, out RaycastHit hitInfo, LayerMask layerMask = default, float length = 100.0f) {
-		
+
 		if (layerMask == default) {
 			int ignoredMask = LayerMask.NameToLayer("Ignore Raycast");
 			layerMask = ~(1 << ignoredMask); // Cannot set the "Everything" layer directly so use default as a placeholder
 		}
 		Debug.DrawRay(ray.origin, ray.direction * length, Color.red, 0.2f);
 		if (Physics.Raycast(ray, out hitInfo, length, layerMask)) {
+			Logger.Log("PlacementManager", $"Hit: {hitInfo.collider.gameObject.name} at {hitInfo.point}");
 			return true;
 		}
 		return false;
